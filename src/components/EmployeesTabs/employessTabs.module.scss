@@ -1,0 +1,68 @@
+@use "../../styles/index.scss" as *;
+
+.wrapper {
+  height: 100%;
+}
+.tabsContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 57px;
+}
+.tabsWrapper {
+  padding-left: 40px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 40px;
+}
+.buttonsContainer {
+  display: flex;
+  gap: 8px;
+}
+.tabButton {
+  width: 40px;
+  height: 40px;
+  background: #ffffff;
+  box-shadow: 0px 4px 18px rgba(210, 209, 209, 0.5);
+  border-radius: 50%;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.next {
+  transform: rotate(-180deg);
+}
+.tabList {
+  display: flex;
+  gap: 40px;
+  padding-bottom: 14px;
+  border-bottom: 1.5px solid $color-text-disabled;
+}
+.tab {
+  font-family: $font-Proxima;
+  font-weight: $fw-semibold;
+  font-size: 16px;
+  line-height: 24px;
+  color: $color-text-disabled;
+  letter-spacing: 0.44px;
+  cursor: pointer;
+  outline: none;
+}
+.selectedTab {
+  font-weight: $fw-bold;
+  color: $color-text-dark;
+}
+.tabsContent {
+  background: $color-grey-bg;
+  border-radius: 56px;
+  height: 100%;
+  padding: 27px 0 0 40px;
+}
+.selectedTabContent {
+  //   background: $color-grey-bg;
+  //   border-radius: 56px;
+  //   min-height: 100%;
+}
