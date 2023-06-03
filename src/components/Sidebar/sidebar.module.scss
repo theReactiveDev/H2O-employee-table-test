@@ -1,11 +1,33 @@
 .sidebar {
-  position: fixed;
+  //   position: fixed;
 
-  left: 0;
-  min-height: 100vh;
+  //   left: 0;
+  height: 100%;
   background: linear-gradient(180deg, #54d3c2 0%, #30898a 100%);
   border-radius: 56px 0px 0px 56px;
 }
 .container {
   padding: 55px 85px 70px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.logo {
+  margin-bottom: 75px;
+}
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.link {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 16px;
+}
+.active {
+  background: rgba(169, 233, 224, 0.75);
 }
