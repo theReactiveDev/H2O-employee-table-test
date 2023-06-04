@@ -5,6 +5,8 @@ import { InventoryIcon } from "./sidebarIcons/InventoryIcon";
 import { OrdersIcon } from "./sidebarIcons/OrdersIcon";
 import { SettingsIcon } from "./sidebarIcons/SettingsIcon";
 import { StatisticIcon } from "./sidebarIcons/StatisticIcon";
+import { CompanyLogo } from "./sidebarIcons/CompanyLogo";
+import { TabsIcon } from "./TabsIcon";
 export {
   CalendarIcon,
   DBIcon,
@@ -13,4 +15,6 @@ export {
   OrdersIcon,
   SettingsIcon,
   StatisticIcon,
+  CompanyLogo,
+  TabsIcon,
 };

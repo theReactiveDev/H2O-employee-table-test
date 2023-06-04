@@ -2,7 +2,15 @@ import { useState } from "react";
 import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
 import cn from "classnames";
 
+import {
+  EmployeeQuestionnaires,
+  EmployessCalendar,
+  EmployessDatabase,
+  OverallEmployessDatabase,
+} from "../../features";
+
 import { TabsIcon } from "../../icons";
+
 import s from "./employessTabs.module.scss";
 
 const EmployessTabs = () => {
@@ -36,16 +44,16 @@ const EmployessTabs = () => {
         </div>
         <div className={s.tabsContent}>
           <TabPanel>
-            <h1>База анкет сотрудников</h1>
+            <EmployeeQuestionnaires />
           </TabPanel>
           <TabPanel>
-            <h1>Общая база сотрудников</h1>
+            <OverallEmployessDatabase />
           </TabPanel>
           <TabPanel>
-            <h1>База сотрудников</h1>
+            <EmployessDatabase />
           </TabPanel>
           <TabPanel>
-            <h1>Календарь сотрудников</h1>
+            <EmployessCalendar />
           </TabPanel>
         </div>
       </Tabs>
