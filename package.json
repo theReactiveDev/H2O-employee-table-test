@@ -1,7 +1,7 @@
 {
   "name": "h2o-test-task",
   "version": "0.1.0",
-  "homepage": "https://ReactiveDev.com/H2O-employee-table",
+  "homepage": "https://theReactiveDev.github.io/H2O-employee-table-test/",
   "private": true,
   "dependencies": {
     "@faker-js/faker": "^8.0.2",
