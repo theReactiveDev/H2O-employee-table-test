@@ -1,6 +1,13 @@
 @use "../../styles/index.scss" as *;
 
-.container h1 {
-  font-family: $font-Proxima;
-  font-weight: 300;
+.wrapper {
+  min-height: 100%;
+  width: calc(100% - 127px);
+  margin-left: -50px;
+  background: $color-white;
+  border-radius: 56px;
+}
+.pageTitle {
+  margin-top: 30px;
+  margin-left: 20px;
 }

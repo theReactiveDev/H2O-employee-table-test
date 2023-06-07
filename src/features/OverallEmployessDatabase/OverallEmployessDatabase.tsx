@@ -11,7 +11,7 @@ export const OverallEmployessDatabase = () => {
     <div>
       <h1 className={s.contentHeader}>Общая база сотрудников</h1>
       <TableSearch
-        tableAmount={500}
+        tableAmount={100}
         value={searchString}
         onChange={(value) => setSearchString(value)}
         onClick={() => setIsEditable((prev) => !prev)}

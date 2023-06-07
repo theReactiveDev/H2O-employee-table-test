@@ -1,15 +1,15 @@
 import { FC, useState, useEffect, ChangeEventHandler } from "react";
 import Pagination from "rc-pagination";
-import cn from "classnames";
 
+import TableItem from "../TableItem/TableItem";
 import SortButton from "../SortButton/SortButton";
 
 import { useTableFilter } from "../../shared/hooks/useTable";
 
 import { editTableData, getEmployess } from "../../shared/helpers/tableData";
 import { getPaginationInfo } from "../../shared/helpers/pagination";
+import { formatTableDate } from "../../shared/helpers/dateTransform";
 
-import { DataObject } from "../../shared/types";
 import { Employee } from "../../shared/types/employee";
 
 import { EmployessMock } from "../../shared/mocks/employessMock";
@@ -17,9 +17,6 @@ import { EmployessMock } from "../../shared/mocks/employessMock";
 import { PaginationIcon } from "../../icons";
 
 import s from "./employessTable.module.scss";
-import { format, set } from "date-fns";
-import { formatTableDate } from "../../shared/helpers/dateTransform";
-import TableItem from "../TableItem/TableItem";
 
 interface EmployessTableProps {
   search: string;
@@ -27,7 +24,7 @@ interface EmployessTableProps {
 }
 
 const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
-  const Employess: Employee[] = getEmployess(10, EmployessMock);
+  const Employess: Employee[] = getEmployess(100, EmployessMock);
 
   const [sortKey, setSortKey] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<boolean>(true);
@@ -45,8 +42,6 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
   const [pageData, setPageData] = useState<Employee[]>(
     sortedTableData.slice(0, rowPerPage)
   );
-  console.log("sorted data", sortedTableData);
-  console.log("data", tableData);
 
   useEffect(() => {
     if (sortedTableData.length && currentPage == 0) {
@@ -62,7 +57,6 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
   }, [currentPage, rowPerPage, sortedTableData]);
 
   const handleSortClick = (sort: string, order: boolean) => {
-    console.log(sort, order);
     setSortKey(sort);
     // setSortOrder((prev) => !prev);
     setSortOrder(order);
@@ -72,7 +66,6 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
   };
 
   const handleSelectChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    // console.log(Number(e.target.value));
     setRowPerPage(Number(e.target.value));
   };
   const handleDataEdit = (
@@ -81,8 +74,7 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
     value: string | number
   ) => {
     const editData = editTableData(tableData, key, index, value) as Employee[];
-    // sortedTableData = editData
-    // console.log("edit", editData);
+
     setTableData(editData);
   };
 
@@ -206,19 +198,76 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
                 )}
               </td>
               <td>{employee.id}</td>
-              <td>{employee.phoneNumber}</td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.phoneNumber}
+                    type="number"
+                    onBlur={(value) =>
+                      handleDataEdit("phoneNumber", index, value)
+                    }
+                  />
+                ) : (
+                  employee.phoneNumber
+                )}
+              </td>
+              {/* TODO: add edit feature for other datatypes */}
               <td>{employee.gender}</td>
               <td>{formatTableDate(employee.birthDate)}</td>
-              <td>{employee.metro}</td>
-              <td>{employee.address}</td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.metro}
+                    type="text"
+                    onBlur={(value) => handleDataEdit("metro", index, value)}
+                  />
+                ) : (
+                  employee.metro
+                )}
+              </td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.address}
+                    type="text"
+                    onBlur={(value) => handleDataEdit("address", index, value)}
+                  />
+                ) : (
+                  employee.address
+                )}
+              </td>
               <td>{employee.bank}</td>
               <td>{employee.paymentСard}</td>
               <td>{employee.citizenship}</td>
               <td>{employee.passport}</td>
               <td>{employee.issuedBy}</td>
-              <td>{employee.validTill.toDateString()}</td>
-              <td>{employee.birthplace}</td>
-              <td>{employee.registration}</td>
+              <td>{formatTableDate(employee.validTill)}</td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.birthplace}
+                    type="text"
+                    onBlur={(value) =>
+                      handleDataEdit("birthplace", index, value)
+                    }
+                  />
+                ) : (
+                  employee.birthplace
+                )}
+              </td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.registration}
+                    type="text"
+                    onBlur={(value) =>
+                      handleDataEdit("registration", index, value)
+                    }
+                  />
+                ) : (
+                  employee.registration
+                )}
+              </td>
               <td>{employee.patent ? employee.patent : "-"}</td>
               <td>
                 {employee.patentValidDate
@@ -233,7 +282,17 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
               <td>{employee.decision}</td>
               <td>{employee.source ? employee.source : "-"}</td>
               <td>{employee.date}</td>
-              <td>{employee.note}</td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.note}
+                    type="text"
+                    onBlur={(value) => handleDataEdit("note", index, value)}
+                  />
+                ) : (
+                  employee.note
+                )}
+              </td>
             </tr>
           ))}
         </tbody>
@@ -260,10 +319,6 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
                   nextIcon={<PaginationIcon className={s.next} />}
                   jumpPrevIcon={"..."}
                   jumpNextIcon={"..."}
-
-                  // showTotal={(total, range) =>
-                  //   `${range[0]} - ${range[1]} of ${total} items`
-                  // }
                 />
 
                 <div className={s.pageRowsChanger}>

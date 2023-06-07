@@ -2,8 +2,9 @@ import s from "./pageNotFound.module.scss";
 
 export const PageNotFound = () => {
   return (
-    <div className={s.container}>
-      <h1>Тестовая строка?</h1>
+    // TODO: Add page content when it done
+    <div className={s.wrapper}>
+      <h1 className={s.pageTitle}>Страница в разработке</h1>
     </div>
   );
 };

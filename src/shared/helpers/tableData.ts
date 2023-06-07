@@ -14,25 +14,6 @@ export const editTableData = (
   return editData;
 };
 
-// const editData = (data: Employee[], key: keyof Employee, index: number, value: string|number,  result: (value: Employee[]) => void ) =>{
-// 	const tableData = data
-// 	tableData[index][key] = value
-// 	result( tableData  )
-//  }
-
-// export const getEmployess = (count: number) => {
-//   function createEmployee(): Employee {
-//     return {
-
-//       id: fakerRU.datatype.number(5000),
-//       phoneNumber: fakerRU.phone.number("89#########"),
-//       gender: fakerRU.person.sexType(),
-// 	  fullName: fakerRU.person.fullName(gender),
-//       birthDate: fakerRU.date.birthdate(),
-//       paymentСard: fakerRU.finance.creditCardNumber(),
-//     };
-//   }
-// };
 function createEmployeeNameAndSex() {
   const sex = fakerRU.person.sexType();
   const fullName = fakerRU.person.fullName({ sex });

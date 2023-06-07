@@ -1,0 +1,11 @@
+@use "../../styles/index.scss" as *;
+.input {
+  border: none;
+  background-color: transparent;
+  font-family: $font-Proxima;
+  font-weight: $fw-semibold;
+  font-size: 12px;
+  line-height: 44px;
+  letter-spacing: -0.56px;
+  color: $color-text-grey;
+}
