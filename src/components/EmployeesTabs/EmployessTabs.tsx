@@ -49,7 +49,7 @@ const EmployessTabs = () => {
               <TabsIcon />
             </button>
           </div>
-          <div>
+          <div className={s.tabListContainer}>
             <TabList className={s.tabList}>
               <Tab className={s.tab}>База анкет сотрудников</Tab>
               <Tab className={s.tab}>Общая база сотрудников</Tab>

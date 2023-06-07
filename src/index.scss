@@ -16,6 +16,22 @@ body {
   /* IE and Edge */
   scrollbar-width: none;
   /* Firefox */
+
+  ::-webkit-scrollbar {
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    height: 8px;
+    background: #f8f8f8;
+    border-radius: 4px;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    height: 8px;
+    background: #b6bcc3;
+    border-radius: 4px;
+  }
 }
 
 * {

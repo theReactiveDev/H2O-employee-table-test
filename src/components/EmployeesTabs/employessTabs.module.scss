@@ -11,6 +11,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  gap: 20px;
   padding: 50px 40px 0;
 }
 .tabsWrapper {
@@ -40,17 +41,21 @@
 .next {
   transform: rotate(-180deg);
 }
-.tabList {
+.tabListContainer {
   max-width: 758px;
-  overflow: scroll;
-  // скролбар???
-
+  overflow-x: scroll;
+  overflow-y: hidden;
+  padding-bottom: 5px;
+}
+.tabList {
   display: flex;
   gap: 40px;
   padding-bottom: 14px;
   border-bottom: 1.5px solid $color-text-disabled;
 }
-
+.tablist::-webkit-scrollbar {
+  color: $color-space-green;
+}
 .tab {
   font-family: $font-Proxima;
   font-weight: $fw-semibold;

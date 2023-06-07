@@ -94,14 +94,11 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
             <th rowSpan={2}>№</th>
             <th rowSpan={2}>
               {" "}
-              <div
-                className={s.headerSort}
-                // onClick={() =>
-                // //   handleSortClick(tableData, "fullName", sortOrder)
-                // }
-              >
-                Имя сотрудника <SortButton />
-                {/* <SortIcon className={cn(s.icon, sortOrder ? s.desc : s.asc)} /> */}
+              <div className={s.headerSort}>
+                Имя сотрудника{" "}
+                <SortButton
+                  onClick={(order) => handleSortClick("fullName", order)}
+                />
               </div>
             </th>
             <th colSpan={6}>Основная информация</th>
@@ -113,36 +110,81 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
             <th>ID номер</th>
             <th>Телефон</th>
             <th>
-              <div
-                className={s.headerSort}
-                // onClick={() => handleSortClick("gender")}
-              >
+              <div className={s.headerSort}>
                 Пол{" "}
                 <SortButton
                   onClick={(order) => handleSortClick("gender", order)}
                 />
-                {/* <SortIcon className={cn(s.icon, sortOrder ? s.desc : s.asc)} /> */}
               </div>
             </th>
             <th>Дата рождения</th>
-            <th>Метро</th>
+            <th>
+              <div className={s.headerSort}>
+                Метро{" "}
+                <SortButton
+                  onClick={(order) => handleSortClick("metro", order)}
+                />
+              </div>
+            </th>
             <th>Адрес проживания</th>
-            <th>Банк</th>
+            <th>
+              <div className={s.headerSort}>
+                Банк{" "}
+                <SortButton
+                  onClick={(order) => handleSortClick("bank", order)}
+                />
+              </div>
+            </th>
             <th>Номер карты</th>
-            <th>Гражданство</th>
+            <th>
+              <div className={s.headerSort}>
+                Гражданство
+                <SortButton
+                  onClick={(order) => handleSortClick("citizenship", order)}
+                />
+              </div>
+            </th>
             <th>Паспорт</th>
             <th>Кем выдан</th>
             <th>Срок действия</th>
             <th>Место рождения</th>
             <th>Адрес прописки</th>
-            <th>Патент</th>
+            <th>
+              <div className={s.headerSort}>
+                Патент
+                <SortButton
+                  onClick={(order) => handleSortClick("patent", order)}
+                />
+              </div>
+            </th>
             <th>Срок действия</th>
             <th>СНИЛС</th>
             <th>ИНН</th>
             <th>Мед. книжка</th>
-            <th>Должность</th>
-            <th>Подразделение</th>
-            <th>Решение</th>
+            <th>
+              <div className={s.headerSort}>
+                Должность
+                <SortButton
+                  onClick={(order) => handleSortClick("position", order)}
+                />
+              </div>
+            </th>
+            <th>
+              <div className={s.headerSort}>
+                Подразделение
+                <SortButton
+                  onClick={(order) => handleSortClick("unit", order)}
+                />
+              </div>
+            </th>
+            <th>
+              <div className={s.headerSort}>
+                Решение
+                <SortButton
+                  onClick={(order) => handleSortClick("decision", order)}
+                />
+              </div>
+            </th>
             <th>Источник</th>
             <th>Дата</th>
             <th>Примечание</th>
@@ -166,7 +208,7 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
               <td>{employee.id}</td>
               <td>{employee.phoneNumber}</td>
               <td>{employee.gender}</td>
-              <td>{employee.birthDate.toString()}</td>
+              <td>{formatTableDate(employee.birthDate)}</td>
               <td>{employee.metro}</td>
               <td>{employee.address}</td>
               <td>{employee.bank}</td>
@@ -177,58 +219,70 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
               <td>{employee.validTill.toDateString()}</td>
               <td>{employee.birthplace}</td>
               <td>{employee.registration}</td>
-              <td>{employee.patent}</td>
-              <td>{formatTableDate(employee.patentValidDate)}</td>
-              <td>{employee.snils}</td>
-              <td>{employee.inn}</td>
-              <td>{employee.medicalBook}</td>
+              <td>{employee.patent ? employee.patent : "-"}</td>
+              <td>
+                {employee.patentValidDate
+                  ? formatTableDate(employee.patentValidDate)
+                  : "-"}
+              </td>
+              <td>{employee.snils ? employee.snils : "-"}</td>
+              <td>{employee.inn ? employee.inn : "-"}</td>
+              <td>{employee.medicalBook ? employee.medicalBook : "-"}</td>
               <td>{employee.position}</td>
               <td>{employee.unit}</td>
               <td>{employee.decision}</td>
-              <td>{employee.source}</td>
+              <td>{employee.source ? employee.source : "-"}</td>
               <td>{employee.date}</td>
               <td>{employee.note}</td>
             </tr>
           ))}
         </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan={11}>
+              <div className={s.tableFooter}>
+                <span>
+                  {getPaginationInfo(
+                    sortedTableData.length,
+                    rowPerPage,
+                    currentPage
+                  )}
+                </span>
+
+                <Pagination
+                  className={s.pagination}
+                  total={sortedTableData.length}
+                  current={currentPage}
+                  onChange={handlePageChange}
+                  pageSize={rowPerPage}
+                  showTitle={false}
+                  prevIcon={<PaginationIcon className={s.prev} />}
+                  nextIcon={<PaginationIcon className={s.next} />}
+                  jumpPrevIcon={"..."}
+                  jumpNextIcon={"..."}
+
+                  // showTotal={(total, range) =>
+                  //   `${range[0]} - ${range[1]} of ${total} items`
+                  // }
+                />
+
+                <div className={s.pageRowsChanger}>
+                  <span>отображать на странице</span>
+                  <select
+                    className={s.rowsSelect}
+                    value={rowPerPage}
+                    onChange={handleSelectChange}
+                  >
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="15">15</option>
+                  </select>
+                </div>
+              </div>
+            </td>
+          </tr>
+        </tfoot>
       </table>
-      {/* <div className={s.tableWrapper}> */}
-      <div className={s.tableFooter}>
-        <span>
-          {getPaginationInfo(sortedTableData.length, rowPerPage, currentPage)}
-        </span>
-
-        <Pagination
-          className={s.pagination}
-          total={sortedTableData.length}
-          current={currentPage}
-          onChange={handlePageChange}
-          pageSize={rowPerPage}
-          showTitle={false}
-          prevIcon={<PaginationIcon className={s.prev} />}
-          nextIcon={<PaginationIcon className={s.next} />}
-          jumpPrevIcon={"..."}
-          jumpNextIcon={"..."}
-
-          // showTotal={(total, range) =>
-          //   `${range[0]} - ${range[1]} of ${total} items`
-          // }
-        />
-
-        <div className={s.pageRowsChanger}>
-          <span>отображать на странице</span>
-          <select
-            className={s.rowsSelect}
-            value={rowPerPage}
-            onChange={handleSelectChange}
-          >
-            <option value="5">5</option>
-            <option value="10">10</option>
-            <option value="15">15</option>
-          </select>
-        </div>
-      </div>
-      {/* </div> */}
     </div>
   );
 };

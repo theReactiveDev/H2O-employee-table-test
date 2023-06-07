@@ -9,7 +9,7 @@ export const OverallEmployessDatabase = () => {
   const [isEditable, setIsEditable] = useState<boolean>(false);
   return (
     <div>
-      <h1 className={s.contentHeader}>Календарь сотрудников</h1>
+      <h1 className={s.contentHeader}>Общая база сотрудников</h1>
       <TableSearch
         tableAmount={500}
         value={searchString}
