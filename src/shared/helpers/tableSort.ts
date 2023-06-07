@@ -1,6 +1,5 @@
-interface DataObject {
-  [key: string]: any;
-}
+import { DataObject } from "../types";
+
 export const tableSort = (
   data: DataObject[],
   sort: string,

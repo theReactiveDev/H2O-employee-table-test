@@ -6,9 +6,10 @@ import SortButton from "../SortButton/SortButton";
 
 import { useTableFilter } from "../../shared/hooks/useTable";
 
-import { getEmployess } from "../../shared/helpers/tableData";
+import { editTableData, getEmployess } from "../../shared/helpers/tableData";
 import { getPaginationInfo } from "../../shared/helpers/pagination";
 
+import { DataObject } from "../../shared/types";
 import { Employee } from "../../shared/types/employee";
 
 import { EmployessMock } from "../../shared/mocks/employessMock";
@@ -16,13 +17,17 @@ import { EmployessMock } from "../../shared/mocks/employessMock";
 import { PaginationIcon } from "../../icons";
 
 import s from "./employessTable.module.scss";
+import { format, set } from "date-fns";
+import { formatTableDate } from "../../shared/helpers/dateTransform";
+import TableItem from "../TableItem/TableItem";
 
 interface EmployessTableProps {
   search: string;
+  editTable: boolean;
 }
 
-const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
-  const Employess: Employee[] = getEmployess(50, EmployessMock);
+const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
+  const Employess: Employee[] = getEmployess(10, EmployessMock);
 
   const [sortKey, setSortKey] = useState<string>("");
   const [sortOrder, setSortOrder] = useState<boolean>(true);
@@ -30,7 +35,7 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [rowPerPage, setRowPerPage] = useState<number>(5);
 
-  const sortedTableData = useTableFilter(
+  let sortedTableData = useTableFilter(
     tableData,
     sortKey,
     search,
@@ -40,7 +45,8 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
   const [pageData, setPageData] = useState<Employee[]>(
     sortedTableData.slice(0, rowPerPage)
   );
-  console.log(sortedTableData);
+  console.log("sorted data", sortedTableData);
+  console.log("data", tableData);
 
   useEffect(() => {
     if (sortedTableData.length && currentPage == 0) {
@@ -54,12 +60,6 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
     const lastRow = currentPage * rowPerPage;
     setPageData(sortedTableData.slice(firstRow, lastRow));
   }, [currentPage, rowPerPage, sortedTableData]);
-
-  //   const handleSortClick = (data: Employee[], sort: string, order?: boolean) => {
-  //     const sortedData = tableSort(data, sort, order);
-  //     setTableData(sortedData as Employee[]);
-  //     setSortOrder((prev) => !prev);
-  //   };
 
   const handleSortClick = (sort: string, order: boolean) => {
     console.log(sort, order);
@@ -75,6 +75,22 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
     // console.log(Number(e.target.value));
     setRowPerPage(Number(e.target.value));
   };
+  const handleDataEdit = (
+    key: string,
+    index: number,
+    value: string | number
+  ) => {
+    const editData = editTableData(
+      sortedTableData,
+      key,
+      index,
+      value
+    ) as Employee[];
+    sortedTableData = editData;
+    // console.log("edit", editData);
+    // setTableData(editData);
+  };
+
   return (
     <div className={s.tableContainer}>
       <table className={s.table}>
@@ -141,7 +157,17 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
           {pageData.map((employee, index) => (
             <tr key={employee.id}>
               <td>{(currentPage - 1) * rowPerPage + (index + 1)}</td>
-              <td>{employee.fullName}</td>
+              <td>
+                {editTable ? (
+                  <TableItem
+                    initialValue={employee.fullName}
+                    type="text"
+                    onBlur={(value) => handleDataEdit("fullName", index, value)}
+                  />
+                ) : (
+                  employee.fullName
+                )}
+              </td>
               <td>{employee.id}</td>
               <td>{employee.phoneNumber}</td>
               <td>{employee.gender}</td>
@@ -157,7 +183,7 @@ const EmployessTable: FC<EmployessTableProps> = ({ search }) => {
               <td>{employee.birthplace}</td>
               <td>{employee.registration}</td>
               <td>{employee.patent}</td>
-              <td>{employee.patentValidDate?.toDateString()}</td>
+              <td>{formatTableDate(employee.patentValidDate)}</td>
               <td>{employee.snils}</td>
               <td>{employee.inn}</td>
               <td>{employee.medicalBook}</td>

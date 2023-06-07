@@ -8,11 +8,13 @@ interface TableSearchProps {
   tableAmount: number;
   value: string;
   onChange: (value: string) => void;
+  onClick: () => void;
 }
 const TableSearch: FC<TableSearchProps> = ({
   tableAmount,
   value,
   onChange,
+  onClick,
 }) => {
   return (
     <div className={s.container}>
@@ -33,7 +35,9 @@ const TableSearch: FC<TableSearchProps> = ({
           />
         </div>
       </div>
-      <button className={s.editButton}>Режим редактирования</button>
+      <button onClick={onClick} className={s.editButton}>
+        Режим редактирования
+      </button>
     </div>
   );
 };

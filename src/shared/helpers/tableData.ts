@@ -1,6 +1,24 @@
-import { count } from "console";
-import { Employee } from "../types/employee";
 import { fakerRU } from "@faker-js/faker";
+
+import { DataObject } from "../types";
+import { Employee } from "../types/employee";
+
+export const editTableData = (
+  data: DataObject[],
+  key: string,
+  index: number,
+  value: string | number
+) => {
+  const editData = data;
+  editData[index][key] = value;
+  return editData;
+};
+
+// const editData = (data: Employee[], key: keyof Employee, index: number, value: string|number,  result: (value: Employee[]) => void ) =>{
+// 	const tableData = data
+// 	tableData[index][key] = value
+// 	result( tableData  )
+//  }
 
 // export const getEmployess = (count: number) => {
 //   function createEmployee(): Employee {
