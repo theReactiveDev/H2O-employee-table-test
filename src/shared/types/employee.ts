@@ -1,9 +1,9 @@
 export interface Employee {
   fullName: string;
   id: number;
-  phoneNumber: number;
+  phoneNumber: string;
   gender: string; // Переделать
-  birthDate: string;
+  birthDate: Date;
   metro: string;
   address: string;
   //
@@ -13,12 +13,18 @@ export interface Employee {
   citizenship: string;
   passport: number; // ?
   issuedBy: string;
-  validTill: string;
+  validTill: Date;
   birthplace: string;
   registration: string;
   patent?: string;
-  patentValidDate?: string;
+  patentValidDate?: Date;
   snils?: string;
   inn?: string;
   medicalBook?: string;
+  position: string;
+  unit: string;
+  decision: string;
+  source?: string;
+  date: string;
+  note: string;
 }

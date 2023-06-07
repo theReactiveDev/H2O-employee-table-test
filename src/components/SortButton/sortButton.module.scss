@@ -1,0 +1,11 @@
+.button {
+  width: 13px;
+  height: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+.asc {
+  transform: rotate(-180deg);
+}

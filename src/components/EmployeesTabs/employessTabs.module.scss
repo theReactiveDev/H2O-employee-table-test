@@ -1,17 +1,19 @@
 @use "../../styles/index.scss" as *;
 
-.wrapper {
-  height: 100%;
-}
 .tabsContainer {
-  height: 100%;
   display: flex;
+  height: 100%;
   flex-direction: column;
   justify-content: flex-start;
   gap: 57px;
 }
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50px 40px 0;
+}
 .tabsWrapper {
-  padding-left: 40px;
   display: flex;
   align-items: flex-start;
   justify-content: flex-start;
@@ -24,40 +26,59 @@
 .tabButton {
   width: 40px;
   height: 40px;
-  background: #ffffff;
+  padding: 0;
+  padding-right: 5px;
+  background: $color-white;
   box-shadow: 0px 4px 18px rgba(210, 209, 209, 0.5);
   border-radius: 50%;
   border: 0;
   display: flex;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 .next {
   transform: rotate(-180deg);
 }
 .tabList {
+  max-width: 758px;
+  overflow: scroll;
+  // скролбар???
+
   display: flex;
   gap: 40px;
   padding-bottom: 14px;
   border-bottom: 1.5px solid $color-text-disabled;
 }
+
 .tab {
   font-family: $font-Proxima;
   font-weight: $fw-semibold;
   font-size: 16px;
   line-height: 24px;
   color: $color-text-disabled;
+  white-space: nowrap;
   letter-spacing: 0.44px;
   cursor: pointer;
   outline: none;
 }
 .selectedTab {
+  position: relative;
   font-weight: $fw-bold;
   color: $color-text-dark;
+}
+.selectedTab::before {
+  content: " ";
+  position: absolute;
+  bottom: -15px;
+  width: 100%;
+  height: 4.5px;
+  background: $color-space-green;
+  border-radius: 10px;
 }
 .tabsContent {
   background: $color-grey-bg;
   border-radius: 56px;
   height: 100%;
-  padding: 27px 0 0 40px;
+  padding: 27px 0 27px 40px;
 }

@@ -1,0 +1,40 @@
+@use "../../styles/index.scss" as *;
+
+.container {
+  max-width: 360px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.content {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+}
+.userInfo {
+  display: flex;
+  flex-direction: column;
+
+  h1 {
+    font-family: $font-Proxima;
+    font-weight: $fw-bold;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: 0.44px;
+    color: $color-text-dark;
+  }
+  h2 {
+    font-family: $font-Proxima;
+    font-weight: $fw-semibold;
+    font-size: 14px;
+    line-height: 20px;
+    letter-spacing: 0.15px;
+    color: $color-text-light-grey;
+  }
+}
+.button {
+  width: 16px;
+  height: 8px;
+  background-size: 8px 16px;
+}

@@ -1,0 +1,11 @@
+@use "../../styles/index.scss" as *;
+
+.contentHeader {
+  font-family: $font-Proxima;
+  font-weight: $fw-extrabold;
+  font-size: 28px;
+  line-height: 44px;
+  letter-spacing: -0.56px;
+  color: $color-text-dark;
+  margin-bottom: 20px;
+}
