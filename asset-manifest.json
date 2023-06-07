@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.css": "/H2O-employee-table/static/css/main.bd86b90e.css",
+    "main.js": "/H2O-employee-table/static/js/main.135d6fce.js",
+    "static/js/787.3d3fc15c.chunk.js": "/H2O-employee-table/static/js/787.3d3fc15c.chunk.js",
+    "static/media/ProximaNova-Light.woff": "/H2O-employee-table/static/media/ProximaNova-Light.6f5ad2ca80abea2876d4.woff",
+    "static/media/ProximaNova-Regular.woff": "/H2O-employee-table/static/media/ProximaNova-Regular.99528640efded3e12591.woff",
+    "static/media/ProximaNova-Bold.woff": "/H2O-employee-table/static/media/ProximaNova-Bold.1f267da183b3d4fe3d5b.woff",
+    "static/media/ProximaNova-Semibold.woff": "/H2O-employee-table/static/media/ProximaNova-Semibold.a71877a1eef65838ed4c.woff",
+    "index.html": "/H2O-employee-table/index.html",
+    "main.bd86b90e.css.map": "/H2O-employee-table/static/css/main.bd86b90e.css.map",
+    "main.135d6fce.js.map": "/H2O-employee-table/static/js/main.135d6fce.js.map",
+    "787.3d3fc15c.chunk.js.map": "/H2O-employee-table/static/js/787.3d3fc15c.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.bd86b90e.css",
+    "static/js/main.135d6fce.js"
+  ]
+}
