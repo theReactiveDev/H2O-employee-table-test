@@ -80,15 +80,10 @@ const EmployessTable: FC<EmployessTableProps> = ({ search, editTable }) => {
     index: number,
     value: string | number
   ) => {
-    const editData = editTableData(
-      sortedTableData,
-      key,
-      index,
-      value
-    ) as Employee[];
-    sortedTableData = editData;
+    const editData = editTableData(tableData, key, index, value) as Employee[];
+    // sortedTableData = editData
     // console.log("edit", editData);
-    // setTableData(editData);
+    setTableData(editData);
   };
 
   return (

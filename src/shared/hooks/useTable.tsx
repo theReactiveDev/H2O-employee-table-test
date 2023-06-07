@@ -27,10 +27,11 @@ export const useTableFilter = (
   query: string,
   sortOrder = true
 ) => {
+  console.log("Работает");
   const sortedData = useTableSort(data, sort, sortOrder);
   const sortedAndFilteredData = useMemo(() => {
-    return sortedData.filter((data) =>
-      data.fullName.toLowerCase().includes(query.toLowerCase())
+    return sortedData.filter((item) =>
+      item.fullName.toLowerCase().includes(query.toLowerCase())
     );
   }, [query, sortedData]);
 
